@@ -47,22 +47,22 @@ function initMap(){
         labels.push({el,key,caption});new maplibregl.Marker({element:el,anchor,offset:key==='china'?[-12,-12]:[0,-15]}).setLngLat(coordinates).addTo(routeMap);
       }
       cities.forEach(city=>{
-        const el=document.createElement('div');
+        const el=document.createElement('button');el.type='button';
         el.className='city-marker city-'+city.id;
-        el.setAttribute('role','img');
+        el.setAttribute('aria-pressed','false');el.addEventListener('click',()=>selectCity(city));
         el.append(document.createElement('span'));
         cityLabels.push({el,city});
         new maplibregl.Marker({element:el,anchor:'center'}).setLngLat(city.coordinates).addTo(routeMap);
       });
-      updateMapLabels();fitRoute();
+      updateMapLabels();fitRoute();if(typeof selectedCity!=='undefined'&&selectedCity)selectCity(selectedCity);
     });
     routeMap.on('error',()=>{if(!mapReady)document.querySelector('#map-fallback').hidden=false;});
     new ResizeObserver(()=>{if(mapReady){routeMap.resize();routeMap.fitBounds(mapBounds,{padding:35,duration:0});}}).observe(document.querySelector('.map-shell'));
   }catch{document.querySelector('#map-fallback').hidden=false;}
 }
 function modeLabel(value){return copy[language][value==='help'?'help':value+'Title'];}
-function fieldValue(name){return form.elements[name].value.trim();}
-function reviewRows(){const t=copy[language];return [[t.from,fieldValue('origin')],[t.to,fieldValue('destination')],[t.mode,modeLabel(fieldValue('mode'))],[t.cargo,fieldValue('cargo')],[t.weightLabel,fieldValue('weight')||t.notSpecified],[t.volumeLabel,fieldValue('volume')||t.notSpecified],[t.dateLabel,fieldValue('date')||t.notSpecified]];}
+function fieldValue(name){return form.elements.namedItem(name).value.trim();}
+function reviewRows(){const t=copy[language];return [[t.from,fieldValue('origin')],[t.to,fieldValue('destination')],[t.mode,modeLabel(fieldValue('mode'))],[t.cargo,fieldValue('cargo')],[t.weightLabel,fieldValue('weight')||t.notSpecified],[t.volumeLabel,fieldValue('volume')||t.notSpecified],[t.dateLabel,fieldValue('date')||t.notSpecified],...extraCargoRows()];}
 function buildInquiry(){return copy[language].greeting+'\n\n'+reviewRows().map(([label,value])=>label+': '+value).join('\n');}
 function renderReview(){
   const summary=document.querySelector('#quote-summary');summary.replaceChildren();
@@ -83,6 +83,7 @@ function showStep(step,focus=true){
 function validateStep(){
   let invalid;
   for(const field of panels[currentStep].querySelectorAll('input,textarea,select')){
+    if(field.disabled)continue;
     field.setCustomValidity('');
     if(field.required&&!field.value.trim())field.setCustomValidity(copy[language].requiredError);
     const valid=field.checkValidity();field.setAttribute('aria-invalid',String(!valid));if(!valid&&!invalid)invalid=field;
