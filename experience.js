@@ -62,7 +62,7 @@ function initMap(){
 }
 function modeLabel(value){return copy[language][value==='help'?'help':value+'Title'];}
 function fieldValue(name){return form.elements.namedItem(name).value.trim();}
-function reviewRows(){const t=copy[language];return [[t.from,fieldValue('origin')],[t.to,fieldValue('destination')],[t.mode,modeLabel(fieldValue('mode'))],[t.cargo,fieldValue('cargo')],[t.weightLabel,fieldValue('weight')||t.notSpecified],[t.volumeLabel,fieldValue('volume')||t.notSpecified],[t.dateLabel,fieldValue('date')||t.notSpecified],...extraCargoRows()];}
+function reviewRows(){const t=copy[language];return [[t.from,fieldValue('origin')],[t.to,fieldValue('destination')],[t.mode,modeLabel(fieldValue('mode'))],...(fieldValue('contactPhone')?[[t.contactPhone,fieldValue('contactPhone')]]:[]),[t.cargo,fieldValue('cargo')],[t.weightLabel,fieldValue('weight')||t.notSpecified],[t.volumeLabel,fieldValue('volume')||t.notSpecified],[t.dateLabel,fieldValue('date')||t.notSpecified],...extraCargoRows()];}
 function buildInquiry(){return copy[language].greeting+'\n\n'+reviewRows().map(([label,value])=>label+': '+value).join('\n');}
 function renderReview(){
   const summary=document.querySelector('#quote-summary');summary.replaceChildren();
@@ -86,9 +86,10 @@ function validateStep(){
     if(field.disabled)continue;
     field.setCustomValidity('');
     if(field.required&&!field.value.trim())field.setCustomValidity(copy[language].requiredError);
+    if(field.name==='contactPhone'&&field.value.trim()&&!libphonenumber.isPossiblePhoneNumber(field.value,'UZ'))field.setCustomValidity(copy[language].phoneError);
     const valid=field.checkValidity();field.setAttribute('aria-invalid',String(!valid));if(!valid&&!invalid)invalid=field;
   }
-  if(invalid){document.querySelector('#form-error').textContent=invalid.type==='number'?copy[language].numberError:invalid.type==='date'?copy[language].invalidDate:copy[language].requiredError;invalid.focus();return false;}
+  if(invalid){document.querySelector('#form-error').textContent=invalid.type==='tel'?copy[language].phoneError:invalid.type==='number'?copy[language].numberError:invalid.type==='date'?copy[language].invalidDate:copy[language].requiredError;invalid.focus();return false;}
   return true;
 }
 form.addEventListener('submit',event=>{event.preventDefault();if(currentStep<2&&validateStep())showStep(currentStep+1);});
