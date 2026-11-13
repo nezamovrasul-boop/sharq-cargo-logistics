@@ -12,6 +12,13 @@ const shipmentSelect=planner.querySelector('#map-shipment');
 function refreshRouteCard(){
  if(typeof planner==='undefined')return;
  const t=routeCopy[language],c=copy[language];
+ const stage=selectedCity?(selectedDestination?'ready':'destination'):'origin';
+ document.querySelector('.route-explorer').dataset.stage=stage;
+ const headings=language==='ru'?{origin:'Откуда отправим ваш груз?',destination:'Куда доставить?',ready:'Ваш маршрут готов к заявке'}:{origin:'Yukingizni qayerdan jo‘natamiz?',destination:'Qayerga yetkazamiz?',ready:'Yo‘nalishingiz so‘rovga tayyor'};
+ document.querySelector('.art-label [data-t="networkLabel"]').textContent=headings[stage];
+ destinationSelect.disabled=!selectedCity;
+ planner.querySelector('.planner-cta').hidden=stage!=='ready';
+ 
  document.querySelectorAll('[data-transport]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.transport===fieldValue('mode'))));
  planner.querySelector('.planner-heading').textContent=t.title;
  planner.querySelector('.planner-route').textContent=(selectedCity?.[language]||fieldValue('origin')||(language==='ru'?'Выберите город отправки':'Jo‘natish shahrini tanlang'))+' → '+(selectedDestination?.[language]||fieldValue('destination')||c.uzbekistan);

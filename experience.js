@@ -43,7 +43,7 @@ function initMap(){
       document.querySelector('#map-fallback').hidden=true;
       document.querySelector('#route-map').classList.add('ready');
       for(const [key,caption,coordinates,anchor] of [['china','countryFrom',[104,35],'bottom-right'],['uzbekistan','countryTo',[64.5,41.4],'bottom']]){
-        const el=document.createElement('div');el.className='country-marker';el.append(document.createElement('small'),document.createElement('strong'));
+        const el=document.createElement('div');el.className='country-marker';el.dataset.country=key;el.append(document.createElement('small'),document.createElement('strong'));
         labels.push({el,key,caption});new maplibregl.Marker({element:el,anchor,offset:key==='china'?[-12,-12]:[0,-15]}).setLngLat(coordinates).addTo(routeMap);
       }
       cities.forEach(city=>{
