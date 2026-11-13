@@ -9,18 +9,12 @@ function refreshCityChoice(){
 }
 function selectCity(city){
   selectedCity=city;form.elements.origin.value=city[language];form.elements.origin.setCustomValidity('');form.elements.origin.removeAttribute('aria-invalid');
-  if(mapReady){
-    const [lng,lat]=city.coordinates;
-    const route={type:'Feature',properties:{},geometry:{type:'LineString',coordinates:Array.from({length:61},(_,i)=>{const t=i/60;return [lng+(64.5-lng)*t,lat+(41.4-lat)*t+5*Math.sin(Math.PI*t)];})}};
-    routeMap.getSource('direction').setData(route);
-    routeMap.getSource('points').setData({type:'FeatureCollection',features:[city.coordinates,[64.5,41.4]].map(coordinates=>({type:'Feature',properties:{},geometry:{type:'Point',coordinates}}))});
-    labels.filter(l=>l.key==='china').forEach(l=>l.el.hidden=true);
-  }
+  if(typeof redrawSelectedRoute==='function')redrawSelectedRoute(true);
   refreshCityChoice();if(currentStep===2)renderReview();
 }
 for(const city of cities){const button=document.createElement('button');button.type='button';button.dataset.city=city.id;button.addEventListener('click',()=>selectCity(city));document.querySelector('#city-options').append(button);}
 document.querySelector('.city-quote').addEventListener('click',()=>{showStep(0,false);});
-form.elements.origin.addEventListener('input',()=>{if(selectedCity&&!Object.values({ru:selectedCity.ru,uz:selectedCity.uz}).includes(fieldValue('origin'))){selectedCity=null;if(mapReady){routeMap.getSource('direction').setData(direction);routeMap.getSource('points').setData({type:'FeatureCollection',features:[[104,35],[64.5,41.4]].map(coordinates=>({type:'Feature',properties:{},geometry:{type:'Point',coordinates}}))});labels.filter(l=>l.key==='china').forEach(l=>l.el.hidden=false);}refreshCityChoice();}});
+
 function updateCargoFields(){
   const type=fieldValue('cargoType');
   for(const [id,active] of [['oversized-fields',type==='oversized'],['flammable-fields',fieldValue('danger')==='yes']]){

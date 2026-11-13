@@ -19,3 +19,7 @@ Pinned npm versions and local browser distributions are committed. Run `npm ci` 
 ## Licenses
 
 Upstream license files are retained next to each distribution in vendor. The project package does not grant a new license to the site's brand or content.
+
+## Route planner
+
+Turf great-circle and bbox modules are bundled locally (7.4 KB) with `npm run build:map`. The route connects city centres schematically, never implies a real road/rail itinerary or tracking. Origin and destination selection is linked to the inquiry; unknown city input removes the line. Reduced-motion users see the final line without animation. City coordinates are approximate and not warehouse locations. MapLibre cooperative gestures protect page scrolling on touch devices. No routing API or geocoder account is required.

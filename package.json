@@ -4,7 +4,8 @@
   "description": "Сайт логистической компании: доставка из Китая в Узбекистан.",
   "main": "app.js",
   "scripts": {
-    "check": "node --check app.js && node --check experience.js && node --check improvements.js && node --check integrations.js"
+    "check": "node --check app.js && node --check experience.js && node --check improvements.js && node --check integrations.js && node --check route-planner.js",
+    "build:map": "esbuild scripts/route-geometry.js --bundle --minify --format=iife --global-name=RouteGeometry --outfile=vendor/route-geometry.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,9 @@
   "homepage": "https://github.com/nezamovrasul-boop/sharq-cargo-logistics#readme",
   "dependencies": {
     "@tarekraafat/autocomplete.js": "10.2.10",
+    "@turf/bbox": "7.4.0",
+    "@turf/great-circle": "7.4.0",
+    "esbuild": "0.28.2",
     "filepond": "4.32.14",
     "libphonenumber-js": "1.13.16",
     "photoswipe": "5.4.4"

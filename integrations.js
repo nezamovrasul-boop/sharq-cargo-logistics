@@ -1,9 +1,9 @@
 // Local libraries: no CDN requests or third-party tracking unless configured.
 const destinationCities=[
- {ru:'Ташкент',uz:'Toshkent',en:'Tashkent'}, {ru:'Самарканд',uz:'Samarqand',en:'Samarkand'},
- {ru:'Бухара',uz:'Buxoro',en:'Bukhara'}, {ru:'Андижан',uz:'Andijon',en:'Andijan'},
- {ru:'Наманган',uz:'Namangan',en:'Namangan'}, {ru:'Фергана',uz:'Farg‘ona',en:'Fergana'},
- {ru:'Навои',uz:'Navoiy',en:'Navoi'}, {ru:'Нукус',uz:'Nukus',en:'Nukus'}
+ {coordinates:[69.2401, 41.2995],ru:'Ташкент',uz:'Toshkent',en:'Tashkent'}, {coordinates:[66.9597, 39.6542],ru:'Самарканд',uz:'Samarqand',en:'Samarkand'},
+ {coordinates:[64.4286, 39.7747],ru:'Бухара',uz:'Buxoro',en:'Bukhara'}, {coordinates:[72.3442, 40.7821],ru:'Андижан',uz:'Andijon',en:'Andijan'},
+ {coordinates:[71.6726, 40.9983],ru:'Наманган',uz:'Namangan',en:'Namangan'}, {coordinates:[71.7864, 40.3864],ru:'Фергана',uz:'Farg‘ona',en:'Fergana'},
+ {coordinates:[65.3792, 40.1039],ru:'Навои',uz:'Navoiy',en:'Navoi'}, {coordinates:[59.6103, 42.4602],ru:'Нукус',uz:'Nukus',en:'Nukus'}
 ];
 const cityAliases=['Khorgos Horgos Харгос','Guangzhou','Yiwu','Beijing','Shenzhen'];
 const citySuggesters=[];
