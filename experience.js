@@ -62,7 +62,7 @@ function initMap(){
 }
 function modeLabel(value){return copy[language][value==='help'?'help':value+'Title'];}
 function fieldValue(name){return form.elements.namedItem(name).value.trim();}
-function reviewRows(){const t=copy[language];return [[t.from,fieldValue('origin')],[t.to,fieldValue('destination')],[t.mode,modeLabel(fieldValue('mode'))],...(fieldValue('contactPhone')?[[t.contactPhone,fieldValue('contactPhone')]]:[]),[t.cargo,fieldValue('cargo')],[t.weightLabel,fieldValue('weight')||t.notSpecified],[t.volumeLabel,fieldValue('volume')||t.notSpecified],[t.dateLabel,fieldValue('date')||t.notSpecified],...extraCargoRows()];}
+function reviewRows(){const t=copy[language];return [[t.customerName,fieldValue('customerName')],[t.company,fieldValue('company')],[t.packaging,t[fieldValue('packaging')]],[t.from,fieldValue('origin')],[t.to,fieldValue('destination')],[t.mode,modeLabel(fieldValue('mode'))],...(fieldValue('contactPhone')?[[t.contactPhone,fieldValue('contactPhone')]]:[]),[t.cargo,fieldValue('cargo')],[t.weightLabel,fieldValue('weight')||t.notSpecified],[t.volumeLabel,fieldValue('volume')||t.notSpecified],[t.dateLabel,fieldValue('date')||t.notSpecified],...extraCargoRows()];}
 function buildInquiry(){return copy[language].greeting+'\n\n'+reviewRows().map(([label,value])=>label+': '+value).join('\n');}
 function renderReview(){
   const summary=document.querySelector('#quote-summary');summary.replaceChildren();

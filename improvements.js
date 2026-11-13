@@ -17,7 +17,7 @@ document.querySelector('.city-quote').addEventListener('click',()=>{showStep(0,f
 
 function updateCargoFields(){
   const type=fieldValue('cargoType');
-  for(const [id,active] of [['oversized-fields',type==='oversized'],['flammable-fields',fieldValue('danger')==='yes']]){
+  for(const [id,active] of [['oversized-fields',true],['flammable-fields',fieldValue('danger')==='yes']]){
     const group=document.getElementById(id);group.hidden=!active;
     group.querySelectorAll('input,textarea').forEach(field=>{field.disabled=!active;field.setCustomValidity('');field.removeAttribute('aria-invalid');});
   }
@@ -26,7 +26,7 @@ function updateCargoFields(){
 function extraCargoRows(){
   const t=copy[language],type=fieldValue('cargoType');
   const rows=[[t.shipment,fieldValue('mode')==='air'?t.airShipment:t[{help:'help',groupage:'groupage',full:'fullLoad'}[fieldValue('shipment')]]],[t.dangerLabel,t[{unknown:'dangerUnknown',no:'dangerNo',yes:'dangerYes'}[fieldValue('danger')]]],[t.cargoType,t[{general:'cargoGeneral',oversized:'cargoOversized',small:'cargoSmall'}[type]]]];
-  if(type==='oversized')rows.push([t.dimensionsSummary,['length','width','height'].map(key=>fieldValue(key)||'—').join(' × ')]);
+  rows.push([t.dimensionsSummary,['length','width','height'].map(key=>fieldValue(key)||'—').join(' × ')]);
   if(fieldValue('danger')==='yes')rows.push([t.hazardSummary,fieldValue('hazard')||t.notSpecified]);
   return rows;
 }
