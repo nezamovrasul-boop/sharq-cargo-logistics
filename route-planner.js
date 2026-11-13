@@ -14,7 +14,7 @@ function refreshRouteCard(){
  const t=routeCopy[language],c=copy[language];
  document.querySelectorAll('[data-transport]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.transport===fieldValue('mode'))));
  planner.querySelector('.planner-heading').textContent=t.title;
- planner.querySelector('.planner-route').textContent=(selectedCity?.[language]||fieldValue('origin')||c.china)+' → '+(selectedDestination?.[language]||fieldValue('destination')||c.uzbekistan);
+ planner.querySelector('.planner-route').textContent=(selectedCity?.[language]||fieldValue('origin')||(language==='ru'?'Выберите город отправки':'Jo‘natish shahrini tanlang'))+' → '+(selectedDestination?.[language]||fieldValue('destination')||c.uzbekistan);
  planner.querySelector('.destination-label').textContent=t.destination;
  destinationSelect.replaceChildren(new Option(t.choose,''),...destinationCities.map((city,index)=>new Option(city[language],String(index))));
  destinationSelect.value=selectedDestination?String(destinationCities.indexOf(selectedDestination)):'';
