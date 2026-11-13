@@ -4,7 +4,7 @@
   "description": "Сайт логистической компании: доставка из Китая в Узбекистан.",
   "main": "app.js",
   "scripts": {
-    "check": "node --check app.js && node --check experience.js && node --check improvements.js && node --check integrations.js && node --check route-planner.js",
+    "check": "node --check concept.js && node --check concept-content.js",
     "build:map": "esbuild scripts/route-geometry.js --bundle --minify --format=iife --global-name=RouteGeometry --outfile=vendor/route-geometry.js"
   },
   "repository": {
