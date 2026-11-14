@@ -380,3 +380,7 @@ footer.photo-section .footer-bottom { color: #dce7db; }
   .hero-mobile-scene img { width: 100%; height: auto; }
   .hero-section .map-card { margin-top: 20px; }
 }
+
+/* Selected logo 30, reversed for the dark contacts block. */
+.footer-brand .footer-logo { width: 200px; height: auto; margin-bottom: 16px; }
+@media (max-width: 480px) { .footer-brand .footer-logo { width: 170px; } }
