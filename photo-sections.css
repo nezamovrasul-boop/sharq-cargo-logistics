@@ -343,7 +343,7 @@ footer.photo-section .footer-bottom { color: #dce7db; }
   footer.photo-section .contact-top { padding-bottom: 70px; }
 }
 @media (max-width: 380px) {
-  .site-header .brand { width: 140px; }
+  .site-header .brand { width: 119px; }
   .site-header .menu-button { padding-inline: 6px; }
   .hero-section .section-photo { height: 740px; }
   .hero-section:lang(uz) .section-photo { height: 800px; }
@@ -382,5 +382,5 @@ footer.photo-section .footer-bottom { color: #dce7db; }
 }
 
 /* Selected logo 30, reversed for the dark contacts block. */
-.footer-brand .footer-logo { width: 200px; height: auto; margin-bottom: 16px; }
-@media (max-width: 480px) { .footer-brand .footer-logo { width: 170px; } }
+.footer-brand .footer-logo { width: 170px; height: auto; margin-bottom: 16px; }
+@media (max-width: 480px) { .footer-brand .footer-logo { width: 145px; } }
