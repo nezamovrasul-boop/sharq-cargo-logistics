@@ -374,9 +374,9 @@ footer.photo-section .footer-bottom { color: #dce7db; }
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, #d3eaf5 0%, #d3eaf500 18%);
+    background: linear-gradient(180deg, #d3eaf5 0%, #d3eaf500 18%, #d3eaf500 90%, #d3eaf5 100%);
     pointer-events: none;
   }
   .hero-mobile-scene img { width: 100%; height: auto; }
-  .hero-section .map-card { margin-top: 0; }
+  .hero-section .map-card { margin-top: 20px; }
 }
