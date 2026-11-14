@@ -4,3 +4,8 @@ https://www.naturalearthdata.com/about/terms-of-use/
 Properties reduced for this website. Boundaries are for general geographic context.
 Map renderer: MapLibre GL JS 5.6.2, BSD-3-Clause. See ../vendor/MAPLIBRE-LICENSE.txt.
 The displayed arc is a country-level direction diagram, not an actual transport route or a live shipment position.
+
+Photo backgrounds (photo-*.webp) and transport images are AI-generated illustrative scenes.
+They are not documentary photographs of SHARQ-owned vehicles, facilities or staff.
+New hero, audience, process and contacts photographs generated with the built-in image_gen tool, 2026-11-14.
+Responsive WebP derivatives are optimized for the current website.

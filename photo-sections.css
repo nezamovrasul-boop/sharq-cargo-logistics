@@ -1,0 +1,358 @@
+/* Each section owns its photo, focal point and text-safe overlay. */
+.photo-section {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--paper);
+}
+.section-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+.section-photo picture,
+.section-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.section-photo img { object-fit: cover; }
+.section-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.photo-content { position: relative; }
+.photo-section .eyebrow { color: #4c571f; }
+.photo-section :focus-visible { outline-offset: 5px; }
+
+/* A quiet sky for the offer, road below it, an independent map on the right. */
+.site-header { border-bottom: 0; }
+.hero-section .section-photo::after {
+  background: linear-gradient(180deg, #eff7fa4d, #eff7fa14 62%, #18220c18);
+}
+.hero-section .section-photo img { object-position: 38% center; }
+.hero-section .hero {
+  min-height: 800px;
+  padding-block: 64px 190px;
+  align-items: start;
+}
+.hero-section .hero-copy { padding-top: 34px; }
+.hero-section .hero-description { color: #243226; }
+.hero-section .hero-modes { color: #273a2e; }
+.hero-section .map-card {
+  background: #edf7faf5;
+  border: 1px solid #ffffffb3;
+  box-shadow: 0 18px 60px #18312618;
+  align-self: start;
+  margin-top: 18px;
+}
+
+/* Warehouse photography stays visible beside a structured service list. */
+.services-section .section-photo img { object-position: 24% center; }
+.services-section .section-photo::after {
+  background: linear-gradient(180deg, #eff7fae6, #eff7fa38 55%, #eff7fa66),
+              linear-gradient(90deg, #eff7fa24, #eff7fa22 38%, #eff7fa99);
+}
+.services-section .photo-content {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 48px;
+  min-height: 740px;
+}
+.services-section .section-heading {
+  display: block;
+  margin-bottom: 0;
+  align-self: start;
+}
+.services-section .section-heading h2 { max-width: 490px; }
+.services-section .section-heading > p { margin-top: 24px; color: #354638; }
+.services-section .service-grid {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #ffffffb3;
+  border-radius: 18px;
+  padding: 8px 26px;
+  background: #f3f9fbed;
+  align-self: start;
+}
+.services-section .service-grid article,
+.services-section .service-grid article:not(:nth-child(3n+1)) {
+  padding: 24px 20px 24px 0;
+  border-left: 0;
+}
+.services-section .service-grid article:nth-child(2n) {
+  border-left: 1px solid var(--line);
+  padding-left: 22px;
+  padding-right: 0;
+}
+.services-section .service-grid article:nth-last-child(-n+2) { border-bottom: 0; }
+.services-section .service-grid h3 { font-size: 21px; }
+.services-section .service-grid svg { width: 36px; height: 36px; margin-bottom: 18px; }
+.services-section .service-grid p { font-size: 13px; }
+.services-section .section-note {
+  grid-column: 1;
+  align-self: end;
+  width: fit-content;
+  padding: 14px 18px;
+  background: #eff7faeb;
+  border-radius: 8px;
+  color: #354638;
+  margin: 70px 0 0;
+}
+
+/* Transport photographs become the actual card backgrounds. */
+.freight-section .section-photo::after {
+  background: linear-gradient(180deg, #eff7faf2, #eff7fab3 50%, #eff7fa7a);
+}
+.freight-section .section-photo img { object-position: right center; }
+.freight-section .transport-grid { gap: 22px; }
+.transport-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: 460px;
+  overflow: hidden;
+  border-radius: 16px;
+  color: var(--paper);
+  background: var(--deep);
+}
+.transport-card > img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  aspect-ratio: auto;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.transport-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, #15200c00 24%, #15200c1a 42%, #15200ceb 80%, #15200cf7);
+}
+.transport-copy { width: 100%; padding: 28px; }
+.transport-card h3 { margin: 0 0 22px; font-size: 29px; }
+.transport-actions { flex-direction: row; }
+.transport-card .choice {
+  color: #f4f9f6;
+  background: #eff7fa14;
+  border-color: #d7eef685;
+  min-height: 48px;
+  transition: background .18s, color .18s;
+}
+.transport-card .choice:hover { background: var(--ice); color: var(--deep); }
+.transport-card :focus-visible { outline-color: var(--sky); }
+.freight-section .freight-help {
+  margin-top: 30px;
+  border: 1px solid #ffffffa3;
+  border-radius: 12px;
+  padding: 23px 28px;
+  background: #eff7faed;
+}
+
+/* A client's loading bay, with a light editorial panel on the right. */
+.audience-section .section-photo img { object-position: left center; }
+.audience-section .section-photo::after {
+  background: linear-gradient(90deg, #eff7fa00 20%, #eff7fa29 38%, #eff7faf2 63%, #eff7faf7);
+}
+.audience-section .audience { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: 70px; }
+.audience-section .audience-copy { grid-column: 2; padding: 12px 0 12px 20px; }
+.audience-section .audience-list p { color: #405046; }
+.audience-section .row-number { color: #536026; }
+
+/* Dark framing leaves a clear photographic window above the cargo details. */
+.cargo-section.photo-section { background: #28320f; margin-block: 0; padding-block: 80px; }
+.cargo-section .section-photo img { object-position: 65% center; }
+.cargo-section .section-photo::after {
+  background: linear-gradient(90deg, #1b280999, #1b280900 68%),
+              linear-gradient(180deg, #1b2809ed, #1b28098c 30%, #1b28090d 52%, #1b2809ed 85%);
+}
+.cargo-section .eyebrow,
+.quote-section .quote-intro .eyebrow,
+footer.photo-section .eyebrow { color: #d7dfa8; }
+.cargo-section .cargo-grid {
+  margin-top: 210px;
+  padding: 28px;
+  background: #202e0fe8;
+  border: 1px solid #d7eef638;
+  border-radius: 14px;
+}
+.cargo-section .cargo-grid h3 { font-size: 25px; }
+.cargo-section :focus-visible { outline-color: var(--sky); }
+
+/* Documents provide a quieter rhythm between the two dark sections. */
+.process-section .section-photo img { object-position: right center; }
+.process-section .section-photo::after {
+  background: linear-gradient(90deg, #eff7fae0, #eff7fa70 52%, #eff7fa14),
+              linear-gradient(0deg, #eff7fac9, #eff7fa00 70%);
+}
+.process-section .process { text-align: left; }
+.process-section h2 { max-width: 600px; }
+.process-section .lead { max-width: 450px; color: #405046; }
+.process-section .steps { margin: 110px 0 34px; gap: 22px; border: 0; }
+.process-section .steps li {
+  padding: 28px;
+  background: #f3f9fbf0;
+  border: 1px solid #ffffff9c;
+  border-top: 2px solid var(--olive);
+  border-radius: 12px;
+}
+.process-section .step-number { color: #58662b; font-size: 48px; margin-bottom: 26px; }
+.process-section .steps h3 { font-size: 23px; }
+.process-section .steps p { font-size: 15px; color: #405046; }
+
+/* Keep the inquiry readable on an opaque surface, against a cargo photograph. */
+.quote-section { background: #1d290e; }
+.quote-section .section-photo img { object-position: 15% center; }
+.quote-section .section-photo::after {
+  background: linear-gradient(180deg, #18240dd9, #18240d29 52%, #18240d80),
+              linear-gradient(90deg, #18240d59, #18240d66 48%, #18240dc7);
+}
+.quote-section .quote { gap: 64px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.35fr); }
+.quote-section .quote-intro { position: sticky; top: 38px; color: #f3f9f7; padding-bottom: 40px; }
+.quote-section .quote-intro h2 { font-size: clamp(34px, 3.3vw, 48px); }
+.quote-section .quote-intro > p:not(.eyebrow) { max-width: 380px; }
+.quote-section .quote-intro .hint { color: #e3eadd; border-color: #d7eef666; }
+.quote-section .quote-body {
+  background: #f6fafb;
+  border-color: #ffffffb3;
+  padding: 36px;
+  box-shadow: 0 20px 65px #111c0b29;
+}
+
+/* The closing view of the terminal connects the contact block to the route. */
+footer.photo-section { background: #18260e; margin-top: 0; padding-top: 84px; }
+footer.photo-section .section-photo img { object-position: center 68%; }
+footer.photo-section .section-photo::after {
+  background: linear-gradient(180deg, #18260edb, #18260ea8 45%, #18260ef0);
+}
+footer.photo-section .contact-top { padding-bottom: 100px; }
+footer.photo-section .contact-links a { background: #18260e8c; border-color: #d7eef680; }
+footer.photo-section .contact-links a:hover { background: #d7eef62e; }
+footer.photo-section .footer-brand { padding-block: 36px; }
+footer.photo-section .footer-bottom { color: #dce7db; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .transport-card:hover > img { transform: scale(1.035); }
+}
+@media (max-width: 1100px) {
+  .hero-section .hero { min-height: 780px; padding-block: 48px 190px; gap: 30px; }
+  .hero-section .hero-copy { padding-top: 24px; }
+  .services-section .photo-content { gap: 32px; grid-template-columns: minmax(0,.75fr) minmax(0,1.25fr); }
+  .services-section .service-grid { padding-inline: 22px; }
+  .services-section .service-grid h3 { font-size: 19px; }
+  .services-section .service-grid article:nth-child(2n) { padding-left: 18px; }
+  .transport-card { min-height: 410px; }
+  .transport-copy { padding: 22px; }
+  .transport-card h3 { font-size: 26px; }
+  .transport-card .choice { font-size: 11px; padding-inline: 9px; }
+  .audience-section .audience { gap: 40px; }
+  .cargo-section .cargo-grid { padding: 24px; }
+  .cargo-section .cargo-grid h3 { font-size: 22px; }
+  .process-section .steps li { padding: 24px; }
+  .process-section .steps h3 { font-size: 21px; }
+  .quote-section .quote { gap: 36px; grid-template-columns: minmax(0,.8fr) minmax(0,1.4fr); }
+  .quote-section .quote-body { padding: 28px; }
+}
+@media (max-width: 800px) {
+  .hero-section .section-photo img { object-position: 12% top; object-fit: cover; }
+  .hero-section .section-photo { height: 670px; }
+  .hero-section .section-photo::after { background: linear-gradient(180deg, #eff7fa30 45%, #eff7fa00 68%, #eff7fa); }
+  .hero-section .hero { min-height: 0; padding-block: 44px 48px; gap: 0; }
+  .hero-section .hero-copy { padding: 0 0 150px; }
+  .hero-section .map-card { margin-top: 0; }
+  .services-section .photo-content { display: block; min-height: 0; }
+  .services-section .section-heading { max-width: 560px; margin-bottom: 150px; }
+  .services-section .section-photo img { object-position: 18% top; }
+  .services-section .section-photo::after { background: linear-gradient(180deg, #eff7faeb, #eff7fa33 35%, #eff7faa3 70%); }
+  .services-section .service-grid { padding-inline: 24px; }
+  .services-section .service-grid h3 { font-size: 21px; }
+  .services-section .section-note { margin-top: 20px; }
+  .freight-section .transport-grid { grid-template-columns: 1fr; gap: 20px; }
+  .transport-card { display: flex; min-height: 400px; }
+  .transport-card > img { grid-row: auto; aspect-ratio: auto; }
+  .transport-card h3 { margin: 0 0 18px; font-size: 29px; }
+  .transport-copy { padding: 28px; }
+  .transport-card .choice { font-size: 13px; }
+  .freight-section .freight-help { padding: 24px; }
+  .audience-section .audience { display: block; padding-top: 300px; }
+  .audience-section .section-photo img { object-position: left top; }
+  .audience-section .section-photo::after { background: linear-gradient(180deg, #eff7fa00, #eff7fa00 16%, #eff7faeb 37%, #eff7faf7); }
+  .audience-section .audience-copy { padding: 28px 0 0; }
+  .cargo-section.photo-section { padding-block: 58px; }
+  .cargo-section .cargo-grid { margin-top: 190px; padding: 22px; }
+  .cargo-section .cargo-grid h3 { font-size: 20px; }
+  .cargo-section .cargo-grid p { font-size: 13px; }
+  .process-section .section-photo img { object-position: 65% top; }
+  .process-section .section-photo::after { background: linear-gradient(180deg, #eff7fabf, #eff7fa26 30%, #eff7faa6 65%, #eff7fae0); }
+  .process-section .steps { grid-template-columns: 1fr; margin-top: 180px; gap: 14px; }
+  .process-section .steps li { display: grid; grid-template-columns: 54px 1fr; gap: 8px 24px; padding: 24px; }
+  .process-section .step-number { grid-row: 1 / 3; margin: 0; font-size: 38px; }
+  .process-section .steps h3 { font-size: 23px; margin: 0; }
+  .process-section .steps p { grid-column: 2; max-width: none; }
+  .quote-section .quote { grid-template-columns: 1fr; gap: 24px; }
+  .quote-section .quote-intro { position: static; padding-bottom: 140px; }
+  .quote-section .quote-intro h2 { font-size: 36px; }
+  .quote-section .quote-intro .hint { max-width: 430px; }
+  .quote-section .section-photo img { object-position: 6% top; }
+  .quote-section .section-photo { height: 830px; }
+  .quote-section .section-photo::after { background: linear-gradient(180deg, #1d290ee6, #1d290e52 32%, #1d290e38 50%, #1d290e); }
+  .quote-section .quote-body { padding: 28px; }
+  footer.photo-section { padding-top: 58px; }
+  footer.photo-section .contact-top { padding-bottom: 80px; }
+}
+@media (max-width: 480px) {
+  .hero-section .hero-copy { padding-bottom: 165px; }
+  .hero-section .section-photo { height: 650px; }
+  .hero-section .hero h1 { font-size: 36px; }
+  .hero-section:lang(uz) .section-photo { height: 760px; }
+  .services-section .service-grid { padding-inline: 18px; }
+  .services-section .service-grid h3 { font-size: 18px; }
+  .services-section .service-grid article,
+  .services-section .service-grid article:not(:nth-child(3n+1)) { padding: 23px 14px 23px 0; }
+  .services-section .service-grid article:nth-child(2n) { padding-left: 14px; padding-right: 0; }
+  .services-section .service-grid p { font-size: 12px; }
+  .services-section .service-grid svg { width: 32px; height: 32px; }
+  .services-section .section-heading { margin-bottom: 120px; }
+  .services-section .section-note { font-size: 12px; }
+  .transport-card { min-height: 410px; }
+  .transport-copy { padding: 24px; }
+  .transport-card h3 { font-size: 29px; }
+  .transport-card .choice { font-size: 12px; }
+  .freight-section .freight-help { padding: 20px; }
+  .freight-help .button { width: 100%; }
+  .audience-section .audience { padding-top: 260px; }
+  .cargo-section .cargo-grid { padding: 24px; margin-top: 200px; }
+  .cargo-section .cargo-grid h3 { font-size: 23px; }
+  .cargo-section .cargo-grid p { font-size: 14px; }
+  .process-section .steps li { padding: 23px 20px; grid-template-columns: 42px 1fr; gap: 8px 16px; }
+  .process-section .step-number { font-size: 34px; }
+  .process-section .steps h3 { font-size: 21px; }
+  .process-section .steps p { font-size: 14px; }
+  .quote-section .quote-body { padding: 26px 18px; }
+  .quote-section .quote-intro h2 { font-size: 33px; }
+  footer.photo-section .contact-top { padding-bottom: 70px; }
+}
+@media (max-width: 380px) {
+  .site-header .brand { width: 140px; }
+  .site-header .menu-button { padding-inline: 6px; }
+  .hero-section .section-photo { height: 740px; }
+  .hero-section:lang(uz) .section-photo { height: 800px; }
+  .services-section .service-grid { grid-template-columns: 1fr; }
+  .services-section .service-grid article,
+  .services-section .service-grid article:not(:nth-child(3n+1)),
+  .services-section .service-grid article:nth-child(2n) {
+    padding: 22px 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .services-section .service-grid article:last-child { border-bottom: 0; }
+}
